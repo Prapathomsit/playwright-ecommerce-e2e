@@ -1,8 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 
-test.describe('SauceDemo E-Commerce QA Suite (POM Architecture)', () => {
-
+test.describe('Authentication & Cart Module', () => {
   test('TC-01: Valid user should login and add product to cart', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
@@ -30,7 +29,9 @@ test.describe('SauceDemo E-Commerce QA Suite (POM Architecture)', () => {
     await expect(loginPage.errorMessage).toBeVisible();
     await expect(loginPage.errorMessage).toContainText('Sorry, this user has been locked out.');
   });
+});
 
+test.describe('Checkout & UI Integrity Module', () => {
   test('TC-03: Detect UI Bug - Problem user sees broken checkout behavior', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
@@ -50,7 +51,9 @@ test.describe('SauceDemo E-Commerce QA Suite (POM Architecture)', () => {
     const lastNameValue = await page.locator('[data-test="lastName"]').inputValue();
     expect(lastNameValue).toBe(''); // ยืนยันว่าเจอบั๊กช่องนามสกุลว่างเปล่าจริง
   });
+});
 
+test.describe('Performance & Load Module', () => {
   test('TC-04: Performance Glitch User timing check', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
@@ -71,8 +74,4 @@ test.describe('SauceDemo E-Commerce QA Suite (POM Architecture)', () => {
     // 4. เช็กว่าเวลาต้องมากกว่า 2 วินาทีขึ้นไป
     expect(duration).toBeGreaterThan(2);
   });
-
-
-
-
 });
