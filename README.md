@@ -29,7 +29,7 @@ An end-to-end (E2E) automated testing framework for **SauceDemo** built with **P
 * **TC-04 (Performance Benchmarking):** Latency measurement stabilized with explicit visibility waits to prevent cloud race conditions (`performance_glitch_user`).
 
 ## Live Automated Test Report & Bug Log
-* [View Live Execution Logs & Bug Report (Google Sheets)](วางลิงก์_GOOGLE_SHEETS_ของคุณตรงนี้)
+* [View Live Execution Logs & Bug Report (Google Sheets)](https://docs.google.com/spreadsheets/d/19KROjkgRaDWTIVBfifGJpQjuhYWc4qtKpqVOdnpXm80/edit?usp=sharing)
 
 ## Local Setup & Execution
 1. Clone the repository:
