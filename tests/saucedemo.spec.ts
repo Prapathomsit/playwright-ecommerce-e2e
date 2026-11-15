@@ -53,28 +53,25 @@ test.describe('SauceDemo E-Commerce QA Suite (POM Architecture)', () => {
 
   test('TC-04: Performance Glitch User timing check', async ({ page }) => {
     const loginPage = new LoginPage(page);
-
     await loginPage.goto();
 
+    // 1. เริ่มจับเวลา (Start Timer)
     const startTime = Date.now();
 
-    // กรอก Username และ Password
-    await page.locator('[data-test="username"]').fill('performance_glitch_user');
-    await page.locator('[data-test="password"]').fill('secret_sauce');
+    // 2. กด Login และรอจนกว่า "รายการสินค้า" ในหน้าถัดไปจะโหลดเสร็จสมบูรณ์
+    await loginPage.login('performance_glitch_user', 'secret_sauce');
+    await page.locator('.inventory_list').waitFor({ state: 'visible' });
 
-    // ใช้ Promise.all เพื่อกดคลิกปุ่ม Login พร้อมกับ "รอ" ให้ URL เปลี่ยนเป็น inventory จริงๆ
-    await Promise.all([
-      page.waitForURL('**/inventory.html', { timeout: 15000 }), // รอหน่วงได้สูงสุด 15 วิ
-      page.locator('[data-test="login-button"]').click()
-    ]);
+    // 3. หยุดจับเวลาและคำนวณเป็นวินาที
+    const endTime = Date.now();
+    const duration = (endTime - startTime) / 1000;
 
-    // หยุดจับเวลาเมื่อเข้ามาถึงหน้าสินค้าสำเร็จ
-    const duration = (Date.now() - startTime) / 1000;
     console.log(`⏱️ เวลาที่ใช้ในการโหลดของ performance_glitch_user: ${duration} วินาที`);
 
-    // เช็กว่าเวลาต้องมากกว่า 2 วินาทีขึ้นไป (เพราะบัญชีนี้จงใจทำช้า)
+    // 4. เช็กว่าเวลาต้องมากกว่า 2 วินาทีขึ้นไป
     expect(duration).toBeGreaterThan(2);
   });
+
 
 
 
