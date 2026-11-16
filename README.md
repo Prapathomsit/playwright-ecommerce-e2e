@@ -2,6 +2,10 @@
 
 End-to-end tests for the [SauceDemo](https://www.saucedemo.com) store, written in Playwright and TypeScript using the Page Object Model. The suite runs on GitHub Actions on every push and once a day, across Chromium, Firefox and WebKit. A custom reporter sends each result to a [live Google Sheet](https://docs.google.com/spreadsheets/d/19KROjkgRaDWTIVBfifGJpQjuhYWc4qtKpqVOdnpXm80/edit?usp=sharing).
 
+## Why I built this
+
+I built this project to practise the core skills of a QA automation tester: designing test cases, writing maintainable tests with the Page Object Model, running them automatically in CI, and reporting results in a form that anyone on the team can read.
+
 ## Test cases
 
 | ID | What it checks | User |
