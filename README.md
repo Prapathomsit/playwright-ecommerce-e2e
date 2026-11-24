@@ -20,8 +20,10 @@ I built this project to practise the core skills of a QA automation tester: desi
 ```bash
 npm ci
 npx playwright install
-npx playwright test
+npm test
 ```
+
+Use `npm run test:headed` to watch the browser, `npm run test:ui` to use Playwright's interactive runner, or `npm run test:report` to open the latest HTML report.
 
 Results are sent to Google Sheets only when `GOOGLE_SHEETS_WEBHOOK` is set.
 
