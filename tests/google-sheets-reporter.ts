@@ -30,7 +30,14 @@ class GoogleSheetsReporter implements Reporter {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ runUrl, results: this.results }),
       });
-      console.log('✅ ส่งผลลัพธ์เข้า Google Sheets สำเร็จ:', await response.text());
+      const responseBody = await response.text();
+
+      if (!response.ok) {
+        console.error(`❌ ส่งผลลัพธ์เข้า Google Sheets ไม่สำเร็จ (HTTP ${response.status}):`, responseBody);
+        return;
+      }
+
+      console.log('✅ ส่งผลลัพธ์เข้า Google Sheets สำเร็จ:', responseBody);
     } catch (error) {
       console.error('❌ ส่งผลลัพธ์เข้า Google Sheets ไม่สำเร็จ:', error);
     }
